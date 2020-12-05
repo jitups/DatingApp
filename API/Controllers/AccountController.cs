@@ -35,6 +35,7 @@ namespace API.Controllers
                 PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password)),
                 PasswordSalt = hmac.Key
             };
+
             _dataContext.Users.Add(user);
             await _dataContext.SaveChangesAsync();
             return new UserDto
