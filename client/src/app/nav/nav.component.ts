@@ -28,8 +28,8 @@ export class NavComponent implements OnInit {
       this.route.navigateByUrl('/matches');
     },
       error => {
-        console.log(error);
-        this.toastr.error(error.error);
+        //console.log(error);
+        //this.toastr.error(error.error);
       });
   }
 
