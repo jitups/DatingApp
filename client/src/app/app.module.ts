@@ -18,6 +18,10 @@ import { SharedModule } from './modules/shared.module';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { ServerErrorComponent } from './errors/server-error.component';
 import { NotFoundComponent } from './errors/not-found.component';
+import { MemberCardComponent } from './matches/member-card/member-card.component';
+import { JwtInterceptor } from './interceptors/jwt.interceptor';
+import { MemmberDetailsComponent } from './matches/memmber-details/memmber-details.component';
+import { MemberEditComponent } from './matches/member-edit/member-edit.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +33,10 @@ import { NotFoundComponent } from './errors/not-found.component';
     ListComponent,
     MessagesComponent,
     ServerErrorComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    MemberCardComponent,
+    MemmberDetailsComponent,
+    MemberEditComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +47,8 @@ import { NotFoundComponent } from './errors/not-found.component';
     SharedModule
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

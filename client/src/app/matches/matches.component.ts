@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Member } from '../models/member';
+import { MembersService } from '../services/members.service';
 
 @Component({
   selector: 'app-matches',
@@ -7,9 +10,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MatchesComponent implements OnInit {
 
-  constructor() { }
+  members!: Observable<Member[]>;
+
+  constructor(private membersService: MembersService) { }
 
   ngOnInit(): void {
+    this.members = this.membersService.getMembers();
   }
-
 }

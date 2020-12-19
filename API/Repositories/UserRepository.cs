@@ -53,14 +53,14 @@ namespace API.Repositories
             return await _dataContext.Users.ToListAsync();
         }
 
-        public Task<bool> SaveAllChangesAsync()
+        public async Task<bool> SaveAllChangesAsync()
         {
-            throw new System.NotImplementedException();
+            return await _dataContext.SaveChangesAsync() > 0;
         }
 
         public void Update(AppUser appUser)
         {
-            throw new System.NotImplementedException();
+            _dataContext.Update(appUser);
         }
     }
 }

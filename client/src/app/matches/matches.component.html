@@ -1,1 +1,7 @@
-<p>matches works!</p>
+<div class="row">
+    <div *ngFor="let member of members|async" class="col-2">
+        <p>
+            <app-member-card [member]="member"></app-member-card>
+        </p>
+    </div>
+</div>

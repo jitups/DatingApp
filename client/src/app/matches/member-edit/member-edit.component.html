@@ -1,0 +1,41 @@
+<div class="row" *ngIf="member">
+    <div class="col-4"><h1>Your Profile</h1></div>
+    <div class="col-8">
+        <div class="alert alert-info" *ngIf="editForm.dirty">
+            You have made changes. Kindly save your changes.
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="card">
+            <img src="{{member.photoUrl || '/assets/user.png'}}" alt="{{member.username}}"
+                class="card-img-top img-thumbnail" />
+            <div class="card-body">
+                {{member.age}}, {{member.gender | titlecase}}
+            </div>
+            <div class="card-footer">
+                <div class="btn-group d-flex">
+                    <button form="editForm" [disabled]="!editForm.dirty" type="submit" class="btn btn-success btn-block">Save Changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-8">
+        <tabset>
+            <tab heading="About {{member.username | titlecase}}" id="tab1">
+                <form #editForm="ngForm" id="editForm" (ngSubmit)="updateMember()">
+                    Looking for:<br />
+                    <textarea class="form-control" [(ngModel)]="member.lookingFor" name="lookingFor"
+                        rows="6"></textarea>
+                </form>
+            </tab>
+            <tab heading="Edit Photos">
+                <carousel>
+                    <slide *ngFor="let photo of member.photos">
+                        <img src="{{photo.photoUrl}}" alt="{{photo.photoUrl}}" style="display: block; width: 100%;" />
+                    </slide>
+                </carousel>
+
+            </tab>
+        </tabset>
+    </div>
+</div>
