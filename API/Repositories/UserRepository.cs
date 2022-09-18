@@ -26,7 +26,7 @@ namespace API.Repositories
             return await _dataContext.Users
                         .Where(u => u.UserName == username)
                         .ProjectTo<MemberDto>(_mapper.ConfigurationProvider)
-                        .SingleOrDefaultAsync();
+                        .FirstOrDefaultAsync();
         }
 
         public async Task<IEnumerable<MemberDto>> GetMemberssAsync()
@@ -38,14 +38,14 @@ namespace API.Repositories
 
         public async Task<AppUser> GetUserByIdAsync(int Id)
         {
-            return await _dataContext.Users.SingleOrDefaultAsync(u => u.Id == Id);
+            return await _dataContext.Users.FirstOrDefaultAsync(u => u.Id == Id);
         }
 
         public async Task<AppUser> GetUserByUsernameAsync(string username)
         {
             return await _dataContext.Users
                     .Include(u => u.Photos)
-                    .SingleOrDefaultAsync(u => u.UserName == username);
+                    .FirstOrDefaultAsync(u => u.UserName == username);
         }
 
         public async Task<IEnumerable<AppUser>> GetUsersAsync()
